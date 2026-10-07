@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حفلة تخرج 🎓🎁</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Tahoma, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, #fff0f6 0%, transparent 35%),
+        linear-gradient(135deg, #ffd3e5, #ffc0dc, #ffe8f2);
+      color: #6b1740;
+    }
+
+    /* =========================
+       الخلفية والقلوب
+    ========================= */
+
+    .hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      top: -50px;
+      color: #ff4f91;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.8;
+      }
+
+      90% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 950px;
+      margin: auto;
+      padding: 30px 18px 60px;
+      text-align: center;
+    }
+
+    /* =========================
+       العنوان
+    ========================= */
+
+    h1 {
+      font-size: clamp(35px, 8vw, 65px);
+      color: #c2185b;
+      margin: 10px 0;
+      text-shadow: 0 5px 15px rgba(194, 24, 91, 0.2);
+    }
+
+    .subtitle {
+      font-size: 20px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* =========================
+       زر الموسيقى
+    ========================= */
+
+    .music-button {
+      border: none;
+      background: rgba(255,255,255,0.8);
+      color: #c2185b;
+      padding: 10px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 5px 15px rgba(100,20,60,0.1);
+    }
+
+    /* =========================
+       منطقة الهدايا
+    ========================= */
+
+    .gifts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .gift-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      opacity: 0;
+      transform: translateY(50px) scale(0.7);
+      pointer-events: none;
+    }
+
+    /* ظهور الهدية */
+    .gift-wrapper.show {
+      pointer-events: auto;
+      animation: giftAppear 0.8s cubic-bezier(.17,.89,.32,1.28) forwards;
+    }
+
+    @keyframes giftAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.6) rotate(-8deg);
+      }
+
+      60% {
+        transform: translateY(-12px) scale(1.08) rotate(3deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+      }
+    }
+
+    /* =========================
+       الهدية
+    ========================= */
+
+    .gift {
+      position: relative;
+      width: 155px;
+      height: 155px;
+      border: none;
+      border-radius: 28px;
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff76ad,
+          #f12670
+        );
+
+      box-shadow:
+        0 15px 30px rgba(150,20,80,0.25),
+        inset 0 3px 8px rgba(255,255,255,0.45);
+
+      transition: transform 0.25s ease;
+      font-size: 72px;
+    }
+
+    .gift:hover {
+      transform: translateY(-9px) scale(1.05);
+    }
+
+    /* الشريط على الهدية */
+
+    .gift::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 22px;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.3);
+      border-radius: 5px;
+    }
+
+    .gift::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 22px;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.3);
+      border-radius: 5px;
+    }
+
+    .gift-emoji {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* =========================
+       حركة فتح الهدية
+    ========================= */
+
+    .gift.opening {
+      animation:
+        giftShake 0.35s ease-in-out 3,
+        giftOpen 0.7s ease forwards 1s;
+    }
+
+    @keyframes giftShake {
+      0% {
+        transform: rotate(0deg) scale(1);
+      }
+
+      25% {
+        transform: rotate(-7deg) scale(1.03);
+      }
+
+      50% {
+        transform: rotate(7deg) scale(1.05);
+      }
+
+      75% {
+        transform: rotate(-5deg) scale(1.03);
+      }
+
+      100% {
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes giftOpen {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15) rotate(-3deg);
+      }
+
+      100% {
+        transform: scale(0.75) rotate(5deg);
+        opacity: 0.25;
+      }
+    }
+
+    /* =========================
+       اسم الهدية
+    ========================= */
+
+    .gift-number {
+      margin-top: 13px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .status {
+      margin-top: 5px;
+      font-size: 14px;
+      color: #984263;
+    }
+
+    /* =========================
+       اللمعة عند الفتح
+    ========================= */
+
+    .sparkle {
+      position: fixed;
+      z-index: 20;
+      pointer-events: none;
+      font-size: 28px;
+      animation: sparkleAnimation 1.2s ease-out forwards;
+    }
+
+    @keyframes sparkleAnimation {
+      0% {
+        opacity: 0;
+        transform: translate(0,0) scale(0.2) rotate(0);
+      }
+
+      30% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(
+            var(--x),
+            var(--y)
+          )
+          scale(1.4)
+          rotate(180deg);
+      }
+    }
+
+    /* =========================
+       شاشة الهدية
+    ========================= */
+
+    #giftView,
+    #finalScreen {
+      display: none;
+    }
+
+    .gift-card,
+    .final-card {
+      max-width: 680px;
+      margin: 35px auto;
+      padding: 45px 25px;
+      background: rgba(255,255,255,0.82);
+      border-radius: 38px;
+
+      box-shadow:
+        0 20px 60px rgba(125,20,70,0.18);
+
+      backdrop-filter: blur(12px);
+
+      animation: cardAppear 0.6s ease;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .big-emoji {
+      font-size: 115px;
+      animation: floating 1.8s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    .gift-title {
+      font-size: 34px;
+      color: #c2185b;
+    }
+
+    .gift-content {
+      font-size: 62px;
+      font-weight: bold;
+      color: #d4145a;
+      margin: 25px 0;
+    }
+
+    .gift-description {
+      font-size: 21px;
+      line-height: 1.9;
+    }
+
+    .back-button {
+      border: none;
+      padding: 15px 32px;
+      border-radius: 50px;
+      background: #c2185b;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 20px rgba(194,24,91,0.3);
+
+      transition: 0.25s;
+    }
+
+    .back-button:hover {
+      transform: scale(1.07);
+    }
+
+    /* =========================
+       الشاشة النهائية
+    ========================= */
+
+    .final-car {
+      font-size: 110px;
+      animation: car 1.5s ease-in-out infinite;
+    }
+
+    @keyframes car {
+      0%,100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(18px);
+      }
+    }
+
+    .winner {
+      font-size: clamp(38px, 8vw, 70px);
+      color: #c2185b;
+      font-weight: 900;
+      margin: 15px 0 25px;
+    }
+
+    .final-text {
+      font-size: 25px;
+      line-height: 2;
+    }
+
+    .date-box {
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 25px;
+      background: #ffe2ee;
+      color: #b01654;
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .restart {
+      margin-top: 30px;
+      border: 2px solid #c2185b;
+      background: transparent;
+      color: #c2185b;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .restart:hover {
+      background: #c2185b;
+      color: white;
+    }
+
+    /* =========================
+       الكونفيتي
+    ========================= */
+
+    .confetti {
+      position: fixed;
+      top: -30px;
+      font-size: 25px;
+      pointer-events: none;
+      z-index: 30;
+      animation: confettiFall 3s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       موبايل
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .gifts {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 22px;
+      }
+
+      .gift {
+        width: 125px;
+        height: 125px;
+        font-size: 58px;
+      }
+    }
+
+    @media (max-width: 400px) {
+
+      .gift {
+        width: 108px;
+        height: 108px;
+        font-size: 48px;
+      }
+
+      .gifts {
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- القلوب -->
+  <div class="hearts" id="hearts"></div>
+
+
+  <main class="container">
+
+    <!-- =========================
+         الصفحة الرئيسية
+    ========================= -->
+
+    <section id="giftScreen">
+
+      <h1>🎓 حفلة تخرج 🎓</h1>
+
+      <div class="subtitle">
+        في مفاجآت صغيرة ناطرتك... 🎁💕
+        <br>
+        كل هدية إلها مفاجأة 😌
+      </div>
+
+      <button
+        class="music-button"
+        id="musicButton"
+        onclick="toggleMusic()">
+        🎵 تشغيل الموسيقى
+      </button>
+
+
+      <div class="gifts">
+
+        <!-- الهدية 1 -->
+
+        <div
+          class="gift-wrapper"
+          id="wrapper1">
+
+          <button
+            class="gift"
+            id="gift1"
+            onclick="openGift(1)">
+
+            <span class="gift-emoji">🎁</span>
+
+          </button>
+
+          <div class="gift-number">
+            الهدية الأولى
+          </div>
+
+          <div
+            class="status"
+            id="status1">
+
+            جاهزة 💕
+          </div>
+
+        </div>
+
+
+        <!-- الهدية 2 -->
+
+        <div
+          class="gift-wrapper"
+          id="wrapper2">
+
+          <button
+            class="gift"
+            id="gift2"
+            onclick="openGift(2)">
+
+            <span class="gift-emoji">🎁</span>
+
+          </button>
+
+          <div class="gift-number">
+            الهدية الثانية
+          </div>
+
+          <div
+            class="status"
+            id="status2">
+
+            🔒 بانتظار دورها
+          </div>
+
+        </div>
+
+
+        <!-- الهدية 3 -->
+
+        <div
+          class="gift-wrapper"
+          id="wrapper3">
+
+          <button
+            class="gift"
+            id="gift3"
+            onclick="openGift(3)">
+
+            <span class="gift-emoji">🎁</span>
+
+          </button>
+
+          <div class="gift-number">
+            الهدية الثالثة
+          </div>
+
+          <div
+            class="status"
+            id="status3">
+
+            🔒 بانتظار دورها
+          </div>
+
+        </div>
+
+
+        <!-- الهدية 4 -->
+
+        <div
+          class="gift-wrapper"
+          id="wrapper4">
+
+          <button
+            class="gift"
+            id="gift4"
+            onclick="openGift(4)">
+
+            <span class="gift-emoji">🎁</span>
+
+          </button>
+
+          <div class="gift-number">
+            الهدية الرابعة
+          </div>
+
+          <div
+            class="status"
+            id="status4">
+
+            🔒 بانتظار دورها
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         شاشة الهدية
+    ========================= -->
+
+    <section id="giftView">
+
+      <div class="gift-card">
+
+        <div
+          class="big-emoji"
+          id="giftEmoji">
+          🎁
+        </div>
+
+        <h2
+          class="gift-title"
+          id="giftTitle">
+          الهدية الأولى
+        </h2>
+
+        <div
+          class="gift-content"
+          id="giftContent">
+          0$
+        </div>
+
+        <div
+          class="gift-description"
+          id="giftDescription">
+        </div>
+
+        <br>
+
+        <button
+          class="back-button"
+          onclick="goBack()">
+
+          ← اضغط هون للرجوع
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         النهاية
+    ========================= -->
+
+    <section id="finalScreen">
+
+      <div class="final-card">
+
+        <div class="final-car">
+          🚗
+        </div>
+
+        <div class="winner">
+          🎉 فزتي بسيارة كبيرة! 🎉
+        </div>
+
+        <div class="final-text">
+
+          مبرووووك! 😍❤️
+
+          <br>
+
+          وصلتي للجائزة الكبرى! 🥳
+
+        </div>
+
+        <div class="date-box">
+
+          📅 موعد استلام السيارة:
+
+          <br><br>
+
+          بتاريخ تحسّن الوضع بكل البلدان،
+          وسقوط كل الأنظمة العربية والعالمية،
+          وظهور الزومبي 🧟‍♂️😂
+
+        </div>
+
+        <button
+          class="restart"
+          onclick="restartGame()">
+
+          🔄 أعيدي اللعبة
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* ==================================================
+       بيانات الهدايا
+    ================================================== */
+
+    const gifts = {
+
+      1: {
+        emoji: "💵",
+        title: "الهدية الأولى",
+        content: "0$",
+        description:
+          "مبروك! ربحتي... صفر دولار 😂❤️"
+      },
+
+      2: {
+        emoji: "💐",
+        title: "الهدية الثانية",
+        content: "💐",
+        description:
+          "باقة ورد مرتبة وحلوة مثلك 🌸💕"
+      },
+
+      3: {
+        emoji: "🍫",
+        title: "الهدية الثالثة",
+        content: "🍫",
+        description:
+          "علبة شوكولا فخمة... لا تخلصيها كلها مرة وحدة 😂❤️"
+      },
+
+      4: {
+        emoji: "🌯",
+        title: "الهدية الرابعة",
+        content: "🌯",
+        description:
+          "شاورما! لأن أي حفلة تخرج محترمة لازم يكون فيها شاورما 😂🔥"
+      }
+
+    };
+
+
+    let currentGift = 1;
+    let completed = 0;
+
+
+    /* ==================================================
+       إظهار الهدايا واحدة واحدة
+    ================================================== */
+
+    function showGift(number) {
+
+      const wrapper =
+        document.getElementById("wrapper" + number);
+
+      setTimeout(() => {
+
+        wrapper.classList.add("show");
+
+      }, (number - 1) * 750);
+
+    }
+
+
+    // الهدية الأولى تظهر مباشرة
+    showGift(1);
+
+
+    /* ==================================================
+       فتح الهدية
+    ================================================== */
+
+    function openGift(number) {
+
+      // لا تسمح بفتح هدية غير دورها
+      if (number !== completed + 1) {
+
+        playWrongSound();
+
+        const button =
+          document.getElementById("gift" + number);
+
+        button.animate(
+          [
+            { transform: "translateX(0)" },
+            { transform: "translateX(-8px)" },
+            { transform: "translateX(8px)" },
+            { transform: "translateX(0)" }
+          ],
+          {
+            duration: 300
+          }
+        );
+
+        return;
+      }
+
+
+      startMusic();
+
+
+      const button =
+        document.getElementById("gift" + number);
+
+
+      /* حركة فتح العلبة */
+
+      button.classList.add("opening");
+
+
+      /* صوت فتح */
+
+      playBoxOpenSound();
+
+
+      /* لمعة وقلوب */
+
+      createSparkles(button);
+
+
+      /* بعد انتهاء الحركة ننتقل للهدية */
+
+      setTimeout(() => {
+
+        currentGift = number;
+
+        const gift = gifts[number];
+
+
+        document.getElementById("giftScreen")
+          .style.display = "none";
+
+        document.getElementById("giftView")
+          .style.display = "block";
+
+
+        document.getElementById("giftEmoji")
+          .textContent = gift.emoji;
+
+        document.getElementById("giftTitle")
+          .textContent = gift.title;
+
+        document.getElementById("giftContent")
+          .textContent = gift.content;
+
+        document.getElementById("giftDescription")
+          .textContent = gift.description;
+
+
+      }, 1500);
+
+    }
+
+
+    /* ==================================================
+       الرجوع من الهدية
+    ================================================== */
+
+    function goBack() {
+
+      completed = currentGift;
+
+
+      if (completed === 4) {
+
+        document.getElementById("giftView")
+          .style.display = "none";
+
+        document.getElementById("giftScreen")
+          .style.display = "none";
+
+        document.getElementById("finalScreen")
+          .style.display = "block";
+
+
+        playVictorySound();
+
+        createConfetti();
+
+        return;
+      }
+
+
+      const nextGift =
+        completed + 1;
+
+
+      const nextWrapper =
+        document.getElementById(
+          "wrapper" + nextGift
+        );
+
+
+      const nextButton =
+        document.getElementById(
+          "gift" + nextGift
+        );
+
+
+      const nextStatus =
+        document.getElementById(
+          "status" + nextGift
+        );
+
+
+      nextStatus.textContent =
+        "جاهزة 💕";
+
+
+      /* تظهر الهدية التالية */
+
+      nextWrapper.classList.add("show");
+
+
+      nextButton.classList.remove("opening");
+
+
+      document.getElementById("giftView")
+        .style.display = "none";
+
+      document.getElementById("giftScreen")
+        .style.display = "block";
+
+    }
+
+
+    /* ==================================================
+       إعادة اللعبة
+    ================================================== */
+
+    function restartGame() {
+
+      completed = 0;
+      currentGift = 1;
+
+
+      for (let i = 1; i <= 4; i++) {
+
+        const wrapper =
+          document.getElementById(
+            "wrapper" + i
+          );
+
+        const button =
+          document.getElementById(
+            "gift" + i
+          );
+
+        const status =
+          document.getElementById(
+            "status" + i
+          );
+
+
+        wrapper.classList.remove("show");
+
+        button.classList.remove("opening");
+
+
+        if (i === 1) {
+
+          status.textContent =
+            "جاهزة 💕";
+
+        } else {
+
+          status.textContent =
+            "🔒 بانتظار دورها";
+
+        }
+
+      }
+
+
+      document.getElementById("finalScreen")
+        .style.display = "none";
+
+      document.getElementById("giftView")
+        .style.display = "none";
+
+      document.getElementById("giftScreen")
+        .style.display = "block";
+
+
+      setTimeout(() => {
+        showGift(1);
+      }, 200);
+
+    }
+
+
+    /* ==================================================
+       الصوت
+    ================================================== */
+
+    let audioContext = null;
+    let masterGain = null;
+
+    let musicTimer = null;
+    let musicPlaying = false;
+    let melodyIndex = 0;
+
+
+    const melody = [
+
+      523.25,
+      659.25,
+      783.99,
+      659.25,
+
+      587.33,
+      698.46,
+      880.00,
+      698.46,
+
+      659.25,
+      783.99,
+      987.77,
+      783.99,
+
+      698.46,
+      880.00,
+      1046.50,
+      880.00
+
+    ];
+
+
+    function setupAudio() {
+
+      if (audioContext) return;
+
+
+      audioContext =
+        new (
+          window.AudioContext ||
+          window.webkitAudioContext
+        )();
+
+
+      masterGain =
+        audioContext.createGain();
+
+
+      masterGain.gain.value = 0.07;
+
+
+      masterGain.connect(
+        audioContext.destination
+      );
+
+    }
+
+
+    function playNote(
+      frequency,
+      duration = 0.25,
+      volume = 0.35,
+      type = "sine"
+    ) {
+      setupAudio();
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+
+      oscillator.type = type;
+      oscillator.frequency.value = frequency;
+
+      gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(
+        Math.max(0.0001, volume),
+        audioContext.currentTime + 0.02
+      );
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        audioContext.currentTime + duration
+      );
+
+      oscillator.connect(gain);
+      gain.connect(masterGain);
+
+      oscillator.start();
+      oscillator.stop(audioContext.currentTime + duration + 0.03);
+    }
+
+
+    function startMusic() {
+      setupAudio();
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      if (musicPlaying) return;
+
+      musicPlaying = true;
+      document.getElementById("musicButton").textContent = "🎵 إيقاف الموسيقى";
+
+      melodyIndex = 0;
+
+      clearInterval(musicTimer);
+
+      musicTimer = setInterval(() => {
+        if (!musicPlaying) return;
+
+        playNote(
+          melody[melodyIndex],
+          0.24,
+          0.22,
+          "triangle"
+        );
+
+        melodyIndex = (melodyIndex + 1) % melody.length;
+      }, 280);
+
+      playNote(melody[0], 0.24, 0.22, "triangle");
+    }
+
+
+    function toggleMusic() {
+      setupAudio();
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      if (musicPlaying) {
+        musicPlaying = false;
+        clearInterval(musicTimer);
+        musicTimer = null;
+        document.getElementById("musicButton").textContent =
+          "🎵 تشغيل الموسيقى";
+      } else {
+        startMusic();
+      }
+    }
+
+
+    function playBoxOpenSound() {
+      setupAudio();
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      playNote(180, 0.08, 0.22, "square");
+
+      setTimeout(() => {
+        playNote(260, 0.10, 0.20, "square");
+      }, 90);
+
+      setTimeout(() => {
+        playNote(520, 0.18, 0.18, "triangle");
+      }, 180);
+    }
+
+
+    function playWrongSound() {
+      setupAudio();
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      playNote(180, 0.15, 0.18, "sawtooth");
+
+      setTimeout(() => {
+        playNote(120, 0.18, 0.15, "sawtooth");
+      }, 130);
+    }
+
+
+    function playVictorySound() {
+      setupAudio();
+
+      if (audioContext.state === "suspended") {
+        audioContext.resume();
+      }
+
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+
+      notes.forEach((note, index) => {
+        setTimeout(() => {
+          playNote(note, 0.35, 0.28, "triangle");
+        }, index * 150);
+      });
+    }
+
+
+    function createSparkles(element) {
+      const rect = element.getBoundingClientRect();
+
+      const symbols = ["✨", "💖", "💕", "⭐", "✨", "💗"];
+
+      for (let i = 0; i < 12; i++) {
+        const sparkle = document.createElement("div");
+
+        sparkle.className = "sparkle";
+        sparkle.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        sparkle.style.left =
+          (rect.left + rect.width / 2) + "px";
+
+        sparkle.style.top =
+          (rect.top + rect.height / 2) + "px";
+
+        sparkle.style.setProperty(
+          "--x",
+          ((Math.random() - 0.5) * 260) + "px"
+        );
+
+        sparkle.style.setProperty(
+          "--y",
+          ((Math.random() - 0.5) * 260) + "px"
+        );
+
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1300);
+      }
+    }
+
+
+    function createConfetti() {
+      const symbols = [
+        "🎉",
+        "🎊",
+        "💕",
+        "💖",
+        "✨",
+        "🎓",
+        "❤️"
+      ];
+
+      for (let i = 0; i < 45; i++) {
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+        piece.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.left =
+          Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+          (2 + Math.random() * 2) + "s";
+
+        piece.style.animationDelay =
+          Math.random() * 0.8 + "s";
+
+        piece.style.transform =
+          `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 4500);
+      }
+    }
+
+
+    /* ==================================================
+       قلوب متساقطة
+    ================================================== */
+
+    function createHearts() {
+      const container = document.getElementById("hearts");
+
+      const symbols = ["♥", "♡", "💕", "💗", "💖"];
+
+      for (let i = 0; i < 24; i++) {
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+
+        heart.textContent =
+          symbols[Math.floor(Math.random() * symbols.length)];
+
+        heart.style.left =
+          Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+          (12 + Math.random() * 18) + "px";
+
+        heart.style.animationDuration =
+          (5 + Math.random() * 7) + "s";
+
+        heart.style.animationDelay =
+          (-Math.random() * 10) + "s";
+
+        container.appendChild(heart);
+      }
+    }
+
+    createHearts();
+
+  </script>
+
+</body>
+</html>
